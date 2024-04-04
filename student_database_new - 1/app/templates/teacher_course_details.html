@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Course Details</title>
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #FFFFFFF;
+            color: black;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            table-layout: fixed;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            font-family: Noto Serif;
+            font-style: Noto Serif;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar ul li {
+            float: left;
+        }
+
+        .navbar ul li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #FFFFFFF;
+            color: brown;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 2px solid grey;
+            transition: 0.5s;
+        }
+
+        /* Add HR styles */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0);
+            margin-top: 80px;
+            margin-left: -20px;
+            font-size: 18px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(247, 90, 42, 0.7);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 138, 102, 0.7);
+        }
+
+        tr:hover {
+            box-shadow: 0 0 10px white;
+        }
+
+        td {
+            border-bottom: 1px solid rgba(247, 90, 42, 0.7);
+        }
+
+        .logout-button {
+            background-color: rgba(247, 90, 42, 0.7);
+            border: none;
+            margin-right: 10px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background-color: rgba(247, 90, 42, 0.9);
+        }
+
+        /* Background image */
+        body {
+            background-image: url('static/img/main_bck1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="teacherlanding_page">Home</a></li>
+        </ul>
+        <button class="logout-button" onclick="location.href='logout_viewsteacher'">Logout</button>
+    </div>
+    <hr>
+
+    <div class="container">
+        {% if course_details %}
+            <table>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Course Code</th>
+                    <th>Department</th>
+                    <th>Section</th>
+                </tr>
+                {% for course_detail in course_details %}
+                    <tr>
+                        <td>{{ course_detail.course_name }}</td>
+                        <td>{{ course_detail.course_code }}</td>
+                        <td>{{ course_detail.dept }}</td>
+                        <td>{{ course_detail.section }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No courses found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
